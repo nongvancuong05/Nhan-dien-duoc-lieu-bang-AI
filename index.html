@@ -28,13 +28,9 @@ let model, webcam, labelContainer, maxPredictions;
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
-
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
-
-    webcam = new tmImage.Webcam(250, 250, true);
-    await webcam.setup();
-    await webcam.play();
+const flip = false; 
+        webcam = new tmImage.Webcam(200, 200, flip); 
+        await webcam.setup({ facingMode: "environment" });
     window.requestAnimationFrame(loop);
 
     document.getElementById("webcam-container").appendChild(webcam.canvas);
